@@ -109,4 +109,4 @@ Although the user interface is written in Portuguese, we are making efforts to g
 See also [CONTRIBUTING.md](CONTRIBUTING.md).
 
 -------
-Made with ❤️ by catechists and You!
+Made with ❤️ by catechists and You!# catequese
