@@ -110,11 +110,3 @@ See also [CONTRIBUTING.md](CONTRIBUTING.md).
 
 -------
 Made with ❤️ by catechists and You!# catequese
-# catequese
-# catequese
-# catequese
-# catequese
-# catequese
-# catequese
-# catequese
-# catequese
