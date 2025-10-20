@@ -1,0 +1,4 @@
+[build]
+# Força o Railway a usar o Dockerfile que está na raiz
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
