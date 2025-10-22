@@ -64,3 +64,7 @@ ENV PORT=8080
 
 # Inicia o Apache em primeiro plano (importante para containers no Railway)
 CMD ["apache2-foreground"]
+
+
+# Define o ServerName para evitar warnings do Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
