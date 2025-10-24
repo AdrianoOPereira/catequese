@@ -39,32 +39,3 @@ RUN a2enmod rewrite \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # Se quiser modo dev, comente a linha de cima e descomente a de baixo:
 # RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
-
-# --- Ajuste para Railway ---
-
-# Configura PHP ini
-# RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-# Se quiser modo dev, comente a linha de cima e descomente a de baixo:
-# RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
-
-# --- Ajuste para Railway ---
-
-# Expõe a porta 8080 (a que o Railway espera)
-EXPOSE 8080
-
-# Altera a configuração do Apache para escutar na porta 8080
-RUN sed -i 's/Listen 80/Listen 8080/' /etc/apache2/ports.conf \
-    && sed -i 's/:80/:8080/g' /etc/apache2/sites-enabled/000-default.conf || true \
-    && sed -i 's/:80/:8080/g' /etc/apache2/sites-enabled/dev.conf || true
-
-# Define a variável de ambiente PORT (boa prática)
-ENV PORT=8080
-
-# Inicia o Apache em primeiro plano (importante para containers no Railway)
-CMD ["apache2-foreground"]
-
-
-# Define o ServerName para evitar warnings do Apache
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
