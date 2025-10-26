@@ -1,4 +1,3 @@
-
 FROM php:7.4-apache
 
 RUN apt-get update && \
@@ -12,6 +11,10 @@ RUN apt-get update && \
         zip \
     && rm -rf /var/lib/apt/lists/*
 
+# Copiar arquivos da aplicação
+COPY . /var/www/html/
+
+# SSL e config Apache
 COPY server.crt /etc/apache2/ssl/server.crt
 COPY server.key /etc/apache2/ssl/server.key
 COPY dev.conf /etc/apache2/sites-enabled/dev.conf
@@ -22,7 +25,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
-# Instala Xdebug 2.9.8 (compatível com PHP 7.4)
+# Xdebug
 RUN pecl install xdebug-2.9.8 \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -31,11 +34,12 @@ RUN pecl install xdebug-2.9.8 \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=VSCODE" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Ativa módulos Apache
-RUN a2enmod rewrite \
-    && a2enmod ssl
+# Módulos Apache
+RUN a2enmod rewrite ssl
 
-# Configura PHP ini
+# Config PHP
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-# Se quiser modo dev, comente a linha de cima e descomente a de baixo:
-# RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+# Porta do Railway
+ENV PORT=8080
+EXPOSE 8080
