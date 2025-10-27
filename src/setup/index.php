@@ -108,11 +108,11 @@ switch($current_step)
         $reqs_satisfied = $checker->isSatisfied();
 
         // Check HTTPS
-        if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off')
-        {
-            $reqs_satisfied = false;
-            $https_pass = false;
-        }
+        //if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off')
+        //{
+            //$reqs_satisfied = false;
+            //$https_pass = false;
+        //}
 
         // Enforce PHP version < 8.0 (installation wizard requirement)
         if (defined('PHP_VERSION_ID') ? PHP_VERSION_ID >= 80000 : version_compare(PHP_VERSION, '8.0.0', '>=')) {
