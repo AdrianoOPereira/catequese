@@ -32,3 +32,4 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # For gd see https://stackoverflow.com/questions/36359917/docker-gd-module-for-php-7
 #Test: https://localhost/autenticacao/securimage/securimage_test.php?tested=1
+

@@ -17,3 +17,6 @@ sonar-project.properties
 .scannerwork
 *~
 .DS_Store
+ 
+# Local env file
+.env
